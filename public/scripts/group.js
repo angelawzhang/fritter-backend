@@ -10,7 +10,7 @@
       .catch(showResponse);
   }
   
-  function viewGroupbyId(fields) {
+  function viewGroupbyName(fields) {
     fetch(`/api/groups?name=${fields.name}`)
       .then(showResponse)
       .catch(showResponse);

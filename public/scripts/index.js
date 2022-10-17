@@ -40,7 +40,7 @@ const formsAndHandlers = {
   'edit-freet': editFreet,
   'delete-freet': deleteFreet,
   'view-all-groups': viewAllGroups,
-  'view-group-by-id': viewGroupbyId,
+  'view-group-by-name': viewGroupbyName,
   'create-group': createGroup,
   'delete-group': deleteGroup,
 };
