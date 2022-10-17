@@ -42,6 +42,7 @@ const formsAndHandlers = {
   'view-all-groups': viewAllGroups,
   'view-group-by-id': viewGroupbyId,
   'create-group': createGroup,
+  'delete-group': deleteGroup,
 };
 
 // Attach handlers to forms

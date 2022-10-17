@@ -313,3 +313,81 @@ This renders the `index.html` file that will be used to interact with the backen
 **Throws**
 
 - `403` if the user is not logged in
+
+#### `GET /api/groups` - Gets all groups
+
+**Returns**
+
+- An array of all groups
+
+#### `GET /api/groups?name=NAME` - Gets groups by name
+
+**Returns**
+
+- An array of all groups with group name `name`
+
+**Throws**
+
+- `404` if no group has the given name
+
+#### `POST /api/groups` - Creates an new group
+
+**Body**
+
+- `name` _{string}_ - The group's name
+
+**Returns**
+
+- A success message
+- An object with the group's details
+
+#### `DELETE /api/groups/:groupId?` - Deletes group
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if the user is not logged in
+- `404` if the group id is not valid
+
+#### `GET /api/feed?genre=GENRE` - Gets freets by genre
+
+**Returns**
+
+- An array of all freets in `genre`
+
+#### `POST /api/genre` - Creates an new genre
+
+**Body**
+
+- `name` _{string}_ - The genre's name
+
+**Returns**
+
+- A success message
+- An object with the genre's details
+
+#### `DELETE /api/genre/:genreId?` - Deletes genre
+
+**Returns**
+
+- A success message
+
+**Throws**
+
+- `403` if the user is not logged in
+- `404` if the genre id is not valid
+
+#### `GET /api/likes?user=USERNAME` - Gets freets liked by user
+
+**Returns**
+
+- An array of all freets in liked by user `USERNAME`
+
+#### `GET /api/likes?freet=freetId` - Gets users that liked freet
+
+**Returns**
+
+- An array of all users that liked freet `freetId`

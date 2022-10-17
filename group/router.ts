@@ -41,7 +41,6 @@ router.get(
     res.status(200).json(response);
   },
   async (req: Request, res: Response) => {
-    console.log(req.query.name);
     const groups = await GroupCollection.findOneByName(req.query.name as string);
     const response = groups.map(util.constructGroupResponse);
     res.status(200).json(response);
@@ -73,59 +72,26 @@ router.post(
   }
 );
 
-// /**
-//  * Delete a group
-//  *
-//  * @name DELETE /api/freets/:id
-//  *
-//  * @return {string} - A success message
-//  * @throws {403} - If the user is not logged in or is not the author of
-//  *                 the freet
-//  * @throws {404} - If the freetId is not valid
-//  */
-// router.delete(
-//   '/:freetId?',
-//   [
-//     userValidator.isUserLoggedIn,
-//     freetValidator.isFreetExists,
-//     freetValidator.isValidFreetModifier
-//   ],
-//   async (req: Request, res: Response) => {
-//     await FreetCollection.deleteOne(req.params.freetId);
-//     res.status(200).json({
-//       message: 'Your freet was deleted successfully.'
-//     });
-//   }
-// );
-
-// /**
-//  * Modify a freet
-//  *
-//  * @name PUT /api/freets/:id
-//  *
-//  * @param {string} content - the new content for the freet
-//  * @return {FreetResponse} - the updated freet
-//  * @throws {403} - if the user is not logged in or not the author of
-//  *                 of the freet
-//  * @throws {404} - If the freetId is not valid
-//  * @throws {400} - If the freet content is empty or a stream of empty spaces
-//  * @throws {413} - If the freet content is more than 140 characters long
-//  */
-// router.put(
-//   '/:freetId?',
-//   [
-//     userValidator.isUserLoggedIn,
-//     freetValidator.isFreetExists,
-//     freetValidator.isValidFreetModifier,
-//     freetValidator.isValidFreetContent
-//   ],
-//   async (req: Request, res: Response) => {
-//     const freet = await FreetCollection.updateOne(req.params.freetId, req.body.content);
-//     res.status(200).json({
-//       message: 'Your freet was updated successfully.',
-//       freet: util.constructFreetResponse(freet)
-//     });
-//   }
-// );
+/**
+ * Delete a group
+ *
+ * @name DELETE /api/groups/:id
+ *
+ * @return {string} - A success message
+ * @throws {403} - If the user is not logged in
+ * @throws {404} - If the groupId is not valid
+ */
+router.delete(
+  '/:groupId?',
+  [
+    userValidator.isUserLoggedIn
+  ],
+  async (req: Request, res: Response) => {
+    await GroupCollection.deleteOne(req.params.groupId);
+    res.status(200).json({
+      message: 'Your group was deleted successfully.'
+    });
+  }
+);
 
 export {router as groupRouter};
