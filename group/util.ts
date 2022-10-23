@@ -7,7 +7,7 @@ import { User } from 'user/model';
 type GroupResponse = {
   _id: string;
   name: string;
-  members: Types.Array<User>;
+  members: Types.Array<String>;
 };
 
 /**

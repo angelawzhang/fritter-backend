@@ -1,4 +1,4 @@
-import type {Types, PopulatedDoc, Document} from 'mongoose';
+import {Types, PopulatedDoc, Document} from 'mongoose';
 import {Schema, model} from 'mongoose';
 import type {User} from '../user/model';
 
@@ -6,14 +6,15 @@ import type {User} from '../user/model';
 export type Group = {
     _id: Types.ObjectId;
     name: string;
-    members?: Types.Array<User>;
+    members: Types.Array<String>;
 };
 
 const GroupSchema = new Schema<Group>({
     name: {
       type: String,
       required: true
-    }
+    },
+    members: [String]
   });
   
   const GroupModel = model<Group>('Group', GroupSchema);

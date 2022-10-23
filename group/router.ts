@@ -41,7 +41,7 @@ router.get(
     res.status(200).json(response);
   },
   async (req: Request, res: Response) => {
-    const groups = await GroupCollection.findOneByName(req.query.name as string);
+    const groups = await GroupCollection.findByName(req.query.name as string);
     const response = groups.map(util.constructGroupResponse);
     res.status(200).json(response);
   }
@@ -61,9 +61,8 @@ router.post(
     userValidator.isUserLoggedIn,
   ],
   async (req: Request, res: Response) => {
-    const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
-    const members = new Types.Array<User>(await UserCollection.findOneByUserId(userId));
-    const group = await GroupCollection.addOne(req.body.name, members);
+    const userId = (req.session.userId as string);
+    const group = await GroupCollection.addOne(req.body.name, userId);
 
     res.status(201).json({
       message: 'Your group was created successfully.',
@@ -71,6 +70,32 @@ router.post(
     });
   }
 );
+
+/**
+ * Add a new member to a group.
+ * 
+ * @name PUT /api/groups/:groupId
+ * 
+ * @param {string} username - The username of the user
+ * @return {GroupResponse} - the updated group
+ * 
+ * @throws {403} - if the user is not logged in
+ * @throws {404} - If the groupId is not valid
+ * 
+ */
+router.put(
+    '/:groupId?',
+    [
+      userValidator.isUserLoggedIn,
+    ],
+    async (req: Request, res: Response) => {
+      const group = await GroupCollection.addUserToGroup(req.params.groupId, req.body.username);
+      res.status(200).json({
+        message: 'Your group was updated successfully.',
+        group: util.constructGroupResponse(group)
+      });
+    }
+  );
 
 /**
  * Delete a group

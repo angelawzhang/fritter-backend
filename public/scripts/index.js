@@ -41,6 +41,7 @@ const formsAndHandlers = {
   'delete-freet': deleteFreet,
   'view-all-groups': viewAllGroups,
   'view-group-by-name': viewGroupbyName,
+  'add-group-member': addGroupMember,
   'create-group': createGroup,
   'delete-group': deleteGroup,
 };
