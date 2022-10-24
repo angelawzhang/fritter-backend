@@ -9,7 +9,7 @@ class GroupCollection {
    *
    * @param {string} name - The name of the group
    * @param {string} userId - The user making the group
-   * @return {Promise<HydratedDocument<Group>>} - The newly created user
+   * @return {Promise<HydratedDocument<Group>>} - The newly created group
    */
 
     static async addOne(name: string, userId: string): Promise<HydratedDocument<Group>> {
@@ -17,7 +17,7 @@ class GroupCollection {
             name: name, 
             members: [userId]
         });
-        await group.save(); // Saves user to MongoDB
+        await group.save(); // Saves group to MongoDB
         return group;
     }
 
@@ -27,7 +27,7 @@ class GroupCollection {
      * @return {Promise<HydratedDocument<Group>[]>} - An array of all of the groups
      */
     static async findAll(): Promise<Array<HydratedDocument<Group>>> {
-        // Retrieves freets and sorts them from most to least recent
+        // Retrieves groups
         return GroupModel.find({});
     }
 

@@ -14,8 +14,7 @@ const router = express.Router();
  *
  * @name GET /api/groups
  *
- * @return {GroupResponse[]} - A list of all the freets sorted in descending
- *                      order by date modified
+ * @return {GroupResponse[]} - A list of all the groups
  */
 /**
  * Get group by id.

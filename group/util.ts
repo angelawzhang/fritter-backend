@@ -14,8 +14,8 @@ type GroupResponse = {
  * Transform a raw Group object from the database into an object
  * with all the information needed by the frontend
  *
- * @param {HydratedDocument<Group>} group - A freet
- * @returns {GroupResponse} - The freet object formatted for the frontend
+ * @param {HydratedDocument<Group>} group - A group
+ * @returns {GroupResponse} - The group object formatted for the frontend
  */
 const constructGroupResponse = (group: HydratedDocument<Group>): GroupResponse => {
   const groupCopy: Group = {

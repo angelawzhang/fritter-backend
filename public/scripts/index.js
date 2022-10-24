@@ -44,6 +44,10 @@ const formsAndHandlers = {
   'add-group-member': addGroupMember,
   'create-group': createGroup,
   'delete-group': deleteGroup,
+  'view-all-likes': viewAllLikes,
+  'view-likes-by-freet': viewLikesbyFreet,
+  'add-like': addLike,
+  'create-like-model': createLikes
 };
 
 // Attach handlers to forms
