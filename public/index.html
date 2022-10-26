@@ -9,6 +9,7 @@
   <script src="/scripts/user.js"></script>
   <script src="/scripts/group.js"></script>
   <script src="/scripts/likes.js"></script>
+  <script src="/scripts/feed.js"></script>
   <script src="/scripts/index.js"></script>
 </head>
 
@@ -73,6 +74,24 @@
         <form id="sign-out">
           <h3>Sign Out</h3>
           <input type="submit" value="Sign out">
+        </form>
+
+        <form id="add-follower">
+          <h3>Follow User</h3>
+          <div>
+            <label for="id">User ID to Follow:</label>
+            <input id="id" name="id"></input>
+          </div>
+          <input type="submit" value="Follow">
+        </form>
+
+        <form id="remove-follower">
+          <h3>Unfollow User</h3>
+          <div>
+            <label for="id">User ID to Unfollow:</label>
+            <input id="id" name="id"></input>
+          </div>
+          <input type="submit" value="Unfollow">
         </form>
 
         <form id="view-all-freets">
@@ -199,6 +218,46 @@
             <textarea id="id" name="id"></textarea>
           </div>
           <input type="submit" value="Create Like Model">
+        </form>
+
+        <form id="view-feed">
+          <h3>View Feed</h3>
+          <div>
+            <label for="genre">Optional Genre:</label>
+            <input id="genre" name="genre">
+          </div>
+          <input type="submit" value="View Feed By User">
+        </form>
+
+        <form id="view-feed-with-genre">
+          <h3>View Feed With Genre</h3>
+          <div>
+            <label for="genre">Genre Name:</label>
+            <input id="genre" name="genre">
+          </div>
+          <input type="submit" value="View Feed By User">
+        </form>
+
+        <form id="create-feed">
+          <h3>Create Feed</h3>
+          <div>
+            <label for="id">User ID:</label>
+            <textarea id="id" name="id"></textarea>
+          </div>
+          <input type="submit" value="Create Feed">
+        </form>
+
+        <form id="add-genre">
+          <h3>Add a Genre</h3>
+          <div>
+            <label for="id">User Id:</label>
+            <input id="id" name="id">
+          </div>
+          <div>
+            <label for="genre">Genre Name:</label>
+            <input id="genre" name="genre">
+          </div>
+          <input type="submit" value="Add new genre">
         </form>
 
 

@@ -62,11 +62,8 @@ router.get(
       userValidator.isUserLoggedIn,
     ],
     async (req: Request, res: Response) => {
-      console.log(req.body);
       const freet = await FreetCollection.findOne(req.body.id);
-      console.log(freet.content);
       const likes = await LikesCollection.addOne(freet);
-      console.log(likes.likes);
   
       res.status(201).json({
         message: 'Your likes model was created successfully.',

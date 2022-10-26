@@ -91,6 +91,42 @@ class UserCollection {
     const user = await UserModel.deleteOne({_id: userId});
     return user !== null;
   }
+
+  /**
+   * Follow a user
+   * 
+   * @param {string} userId - The userId of user
+   * @param {string} userToFollowId - The userId of user to follow
+   * 
+   * @return {Promise<HydratedDocument<User>>} - The updated user
+   */
+  static async addFollower(userId: Types.ObjectId | string, userToFollowId: Types.ObjectId | string): Promise<HydratedDocument<User>> {
+    const user = await UserModel.findOne({_id: userId});
+    const userToFollow = await UserModel.findOne({_id: userToFollowId});
+    userToFollow.followers.push(userId);
+    user.following.push(userToFollowId);
+    await user.save();
+    await userToFollow.save();
+    return user;
+  }
+
+  /**
+   * Unfollow a user
+   * 
+   * @param {string} userId - The userId of user
+   * @param {string} followedId - The userId of user to remove follow from
+   * 
+   * @return {Promise<HydratedDocument<User>>} - The updated user
+   */
+   static async removeFollower(userId: Types.ObjectId | string, followedId: Types.ObjectId | string): Promise<HydratedDocument<User>> {
+    const user = await UserModel.findOne({_id: userId});
+    const followedUser = await UserModel.findOne({_id: followedId});
+    followedUser.followers.pull(userId);
+    user.following.pull(followedId);
+    await user.save();
+    await followedUser.save();
+    return user;
+  }
 }
 
 export default UserCollection;

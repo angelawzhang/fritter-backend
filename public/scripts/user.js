@@ -38,3 +38,15 @@ function signOut() {
     .then(showResponse)
     .catch(showResponse);
 }
+
+function addFollower(fields) {
+  fetch('/api/users/follow', {method: 'PUT', body: JSON.stringify(fields), headers: {'Content-Type': 'application/json'}})
+    .then(showResponse)
+    .catch(showResponse);
+}
+
+function removeFollower(fields) {
+  fetch('/api/users/unfollow', {method: 'PUT', body: JSON.stringify(fields), headers: {'Content-Type': 'application/json'}})
+    .then(showResponse)
+    .catch(showResponse);
+}

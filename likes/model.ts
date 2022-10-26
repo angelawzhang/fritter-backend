@@ -1,4 +1,4 @@
-import { Freet } from 'freet/model';
+import { Freet } from '../freet/model';
 import {Types} from 'mongoose';
 import {Schema, model} from 'mongoose';
 

@@ -1,8 +1,6 @@
 import type {HydratedDocument, Types} from 'mongoose';
-import moment from 'moment';
 import type {Likes} from './model';
-import { User } from 'user/model';
-import { Freet } from 'freet/model';
+import { Freet } from '../freet/model';
 
 type LikesResponse = {
   _id: string;

@@ -34,6 +34,8 @@ const formsAndHandlers = {
   'change-password': changePassword,
   'sign-in': signIn,
   'sign-out': signOut,
+  'add-follower': addFollower,
+  'remove-follower': removeFollower,
   'view-all-freets': viewAllFreets,
   'view-freets-by-author': viewFreetsByAuthor,
   'create-freet': createFreet,
@@ -47,7 +49,11 @@ const formsAndHandlers = {
   'view-all-likes': viewAllLikes,
   'view-likes-by-freet': viewLikesbyFreet,
   'add-like': addLike,
-  'create-like-model': createLikes
+  'create-like-model': createLikes,
+  'view-feed': viewFeedByUser,
+  'view-feed-with-genre': viewFeedWithGenre,
+  'add-genre': addGenre,
+  'create-feed': createFeed
 };
 
 // Attach handlers to forms

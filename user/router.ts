@@ -125,6 +125,54 @@ router.put(
 );
 
 /**
+ * Follow a user
+ *
+ * @name PUT /api/users/follow
+ *
+ * @param {string} id - User to follow
+ * @return {UserResponse} - The updated user
+ * @throws {403} - If user is not logged in
+ */
+ router.put(
+  '/follow',
+  [
+    userValidator.isUserLoggedIn
+  ],
+  async (req: Request, res: Response) => {
+    const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
+    const user = await UserCollection.addFollower(userId, req.body.id);
+    res.status(200).json({
+      message: 'Your profile was updated successfully.',
+      user: util.constructUserResponse(user)
+    });
+  }
+);
+
+/**
+ * Unfollow a user
+ *
+ * @name PUT /api/users/unfollow
+ *
+ * @param {string} id - User to unfollow
+ * @return {UserResponse} - The updated user
+ * @throws {403} - If user is not logged in
+ */
+ router.put(
+  '/unfollow',
+  [
+    userValidator.isUserLoggedIn
+  ],
+  async (req: Request, res: Response) => {
+    const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
+    const user = await UserCollection.removeFollower(userId, req.body.id);
+    res.status(200).json({
+      message: 'Your profile was updated successfully.',
+      user: util.constructUserResponse(user)
+    });
+  }
+);
+
+/**
  * Delete a user.
  *
  * @name DELETE /api/users
