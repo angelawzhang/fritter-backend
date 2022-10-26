@@ -6,7 +6,7 @@ import {Schema, model} from 'mongoose';
 export type Likes = {
     _id: Types.ObjectId;
     freet: Freet;
-    likes: Types.Array<String>;
+    likes: Types.Array<String>; // list of userIds that liked the freet
 };
 
 const LikesSchema = new Schema<Likes>({

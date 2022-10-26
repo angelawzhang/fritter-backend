@@ -24,8 +24,6 @@ const router = express.Router();
  * @name GET /api/likes?freetId=freetId
  *
  * @return {LikesResponse[]} - An array of likes
- * @throws {400} - If id is not given
- * @throws {404} - If no freet has given id
  *
  */
 router.get(
@@ -55,6 +53,8 @@ router.get(
  *
  * @param {string} id - The id of the freet
  * @return {LikesResponse} - The created likes model
+ * 
+ * @throws {403} - if the user is not logged in
  */
  router.post(
     '/',
@@ -81,7 +81,6 @@ router.get(
  * @return {LikesResponse} - the updated likes model
  * 
  * @throws {403} - if the user is not logged in
- * @throws {404} - If the freetId is not valid
  * 
  */
  router.put(

@@ -25,8 +25,7 @@ const router = express.Router();
  * @name GET /api/feed?genre=genre
  *
  * @return {Freet[]} - An array of feeds
- * @throws {400} - If id is not given
- * @throws {404} - If no user has given id
+ * @throws {403} - If user is not logged in
  *
  */
 router.get(
@@ -51,6 +50,7 @@ router.get(
  *
  * @param {string} id - The id of the user
  * @return {GenreFeedResponse} - The created feed
+ * @throws {403} - If user is not logged in
  */
  router.post(
     '/',
@@ -78,7 +78,6 @@ router.get(
  * @return {GenreFeedResponse} - the updated feed
  * 
  * @throws {403} - if the user is not logged in
- * @throws {404} - If the userId is not valid
  * 
  */
  router.put(

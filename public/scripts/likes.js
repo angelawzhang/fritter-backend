@@ -28,9 +28,4 @@
       .catch(showResponse);
   }
   
-//   function deleteGroup(fields) {
-//     fetch(`/api/groups/${fields.id}`, {method: 'DELETE'})
-//       .then(showResponse)
-//       .catch(showResponse);
-//   }
   

@@ -4,6 +4,7 @@ import GroupCollection from './collection';
 import UserCollection from '../user/collection';
 import { User } from 'user/model';
 import * as userValidator from '../user/middleware';
+import * as groupValidator from './middleware';
 import * as util from './util';
 import { Types } from 'mongoose';
 
@@ -22,8 +23,6 @@ const router = express.Router();
  * @name GET /api/groups?name=name
  *
  * @return {GroupResponse[]} - An array of groups with name
- * @throws {400} - If name is not given
- * @throws {404} - If no group has given name
  *
  */
 router.get(
@@ -53,11 +52,15 @@ router.get(
  *
  * @param {string} name - The name of the group
  * @return {GroupResponse} - The created group
+ * 
+ * @throws {400} - if name is invalid
+ * @throws {403} - if the user is not logged in
  */
 router.post(
   '/',
   [
     userValidator.isUserLoggedIn,
+    groupValidator.isValidName
   ],
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string);
@@ -86,6 +89,7 @@ router.put(
     '/:groupId?',
     [
       userValidator.isUserLoggedIn,
+      groupValidator.isIdValid
     ],
     async (req: Request, res: Response) => {
       const group = await GroupCollection.addUserToGroup(req.params.groupId, req.body.username);
@@ -108,7 +112,8 @@ router.put(
 router.delete(
   '/:groupId?',
   [
-    userValidator.isUserLoggedIn
+    userValidator.isUserLoggedIn,
+    groupValidator.isIdValid
   ],
   async (req: Request, res: Response) => {
     await GroupCollection.deleteOne(req.params.groupId);

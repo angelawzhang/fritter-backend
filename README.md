@@ -314,6 +314,28 @@ This renders the `index.html` file that will be used to interact with the backen
 
 - `403` if the user is not logged in
 
+#### `PUT /api/users/follow` - Follows a user
+
+**Body**
+
+- `userId` _{string}_ - The user to follow
+
+**Returns**
+
+- A success message
+- An object with the current user's details (without password)
+
+#### `PUT /api/users/unfollow` - Unfollows a user
+
+**Body**
+
+- `userId` _{string}_ - The user to unfollow
+
+**Returns**
+
+- A success message
+- An object with the current user's details (without password)
+
 #### `GET /api/groups` - Gets all groups
 
 **Returns**
@@ -341,6 +363,11 @@ This renders the `index.html` file that will be used to interact with the backen
 - A success message
 - An object with the group's details
 
+**Throws**
+
+- `400` if the group name is not valid
+- `403` if the user is not logged in
+
 #### `DELETE /api/groups/:groupId?` - Deletes group
 
 **Returns**
@@ -352,13 +379,19 @@ This renders the `index.html` file that will be used to interact with the backen
 - `403` if the user is not logged in
 - `404` if the group id is not valid
 
+#### `GET /api/feed` - Gets feed of the suer 
+
+**Returns**
+
+- An array of all freets from user's following
+
 #### `GET /api/feed?genre=GENRE` - Gets freets by genre
 
 **Returns**
 
 - An array of all freets in `genre`
 
-#### `POST /api/genre` - Creates an new genre
+#### `PUT /api/feed/:userId` - Adds a new genre
 
 **Body**
 
@@ -369,25 +402,19 @@ This renders the `index.html` file that will be used to interact with the backen
 - A success message
 - An object with the genre's details
 
-#### `DELETE /api/genre/:genreId?` - Deletes genre
-
-**Returns**
-
-- A success message
-
-**Throws**
-
-- `403` if the user is not logged in
-- `404` if the genre id is not valid
-
-#### `GET /api/likes?user=USERNAME` - Gets freets liked by user
-
-**Returns**
-
-- An array of all freets in liked by user `USERNAME`
 
 #### `GET /api/likes?freet=freetId` - Gets users that liked freet
 
 **Returns**
 
 - An array of all users that liked freet `freetId`
+
+#### `PUT /api/likes/:freetId` - Adds a like to a freet
+
+**Returns**
+
+- An object with the like details
+
+**Throws**
+
+- `403` if the user is not logged in
